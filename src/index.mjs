@@ -61,6 +61,25 @@ app.delete('/api/games/:id', async (req, res) => {
     res.json()
 })
 
+
+//DELETE GAME BY ID
+app.get('/', async (req, res) => {
+
+    let content = "<h1>GAMES API</h1>"
+
+    content += "<h3>ENDPOINTS</h3>"
+
+    content += "<ul>"
+    content += "<li>GET /api/games</li>"
+    content += "<li>POST /api/games</li>"
+    content += "<li>PUT /api/games/:id</li>"
+    content += "<li>DELETE /api/games/:id</li>"
+    content += "<li>GET /api/games/:id</li>"
+    content += "</ul>"
+
+    res.send(content)
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
