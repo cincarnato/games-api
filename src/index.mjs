@@ -77,6 +77,16 @@ app.get('/', async (req, res) => {
     content += "<li>GET /api/games/:id</li>"
     content += "</ul>"
 
+    content += "{\n" +
+        "  \"name\": \"GAME NAME\",\n" +
+        "  \"company\": \"COMPANY NAME\",\n" +
+        "  \"releaseDate\": \"2022-02-25\",\n" +
+        "  \"price\": 1000,\n" +
+        "  \"coverImage\": \"https://domain.com/game.png\",\n" +
+        "  \"description\": \"The description\"\n" +
+        "\n" +
+        "}"
+
     res.send(content)
 })
 
