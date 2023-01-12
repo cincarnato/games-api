@@ -76,8 +76,9 @@ app.get('/', async (req, res) => {
     content += "<li>DELETE /api/games/:id</li>"
     content += "<li>GET /api/games/:id</li>"
     content += "</ul>"
-
-    content += "{\n" +
+    content += "<br>"
+    content += "<h3>JSON EXAMPLE:</h3>"
+    content += "<pre>{\n" +
         "  \"name\": \"GAME NAME\",\n" +
         "  \"company\": \"COMPANY NAME\",\n" +
         "  \"releaseDate\": \"2022-02-25\",\n" +
@@ -85,7 +86,7 @@ app.get('/', async (req, res) => {
         "  \"coverImage\": \"https://domain.com/game.png\",\n" +
         "  \"description\": \"The description\"\n" +
         "\n" +
-        "}"
+        "}</pre>"
 
     res.send(content)
 })
