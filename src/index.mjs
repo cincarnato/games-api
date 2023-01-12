@@ -1,7 +1,7 @@
 import express from 'express'
 import {createGame, updateGame, findGameById, deleteGame, fetchGames} from "./services/GameService.mjs"
 const app = express()
-const port = 7500
+const port = process.env.PORT ? process.env.PORT : 7500
 app.use(express.json())
 import mongoose from 'mongoose'
 
