@@ -5,7 +5,9 @@ const port = 7500
 app.use(express.json())
 import mongoose from 'mongoose'
 
-mongoose.connect('mongodb://127.0.0.1:27017/games');
+
+const MONGO_URI = process.env.MONGO_URI ?  process.env.MONGO_URI : 'mongodb://127.0.0.1:27017/games'
+mongoose.connect(MONGO_URI);
 
 //CREATE GAME
 app.post('/api/games', async (req, res) => {
