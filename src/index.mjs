@@ -1,6 +1,6 @@
 import express from 'express'
 import  cors from 'cors'
-import {createGame, updateGame, findGameById, deleteGame, fetchGames} from "./services/GameService.mjs"
+import {createGame, updateGame, findGameById, deleteGame, fetchGames, paginateGames} from "./services/GameService.mjs"
 const app = express()
 const port = process.env.PORT ? process.env.PORT : 7500
 app.use(express.json())
@@ -43,7 +43,17 @@ app.put('/api/games/:id', async (req, res) => {
 
 //GET GAMES
 app.get('/api/games', async (req, res) => {
-    let games = await fetchGames()
+
+    let page = req.query.page
+    let games
+    if(page){
+        let limit = req.query.limit ? req.query.limit : 10
+
+        games = await paginateGames(page, limit)
+    }else{
+        games = await fetchGames()
+    }
+
     res.json(games)
 })
 
@@ -72,11 +82,12 @@ app.get('/', async (req, res) => {
     content += "<h3>ENDPOINTS</h3>"
 
     content += "<ul>"
-    content += "<li>GET /api/games</li>"
-    content += "<li>POST /api/games</li>"
-    content += "<li>PUT /api/games/:id</li>"
-    content += "<li>DELETE /api/games/:id</li>"
-    content += "<li>GET /api/games/:id</li>"
+    content += "<li>GET /api/games <span style='color:grey'>(all)</span></li>"
+    content += "<li>GET /api/games/:id <span style='color:grey'>(one)</span></li>"
+    content += "<li>GET /api/games?page=1&limit=10 <span style='color:grey'>(paginated)</span></li>"
+    content += "<li>POST /api/games <span style='color:grey'>(create)</span></li>"
+    content += "<li>PUT /api/games/:id <span style='color:grey'>(update)</span></li>"
+    content += "<li>DELETE /api/games/:id <span style='color:grey'>(delete)</span></li>"
     content += "</ul>"
     content += "<br>"
     content += "<h3>JSON EXAMPLE:</h3>"

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import mongoosePaginate  from 'mongoose-paginate-v2'
 
 const schema = new mongoose.Schema(
     {
@@ -10,6 +11,8 @@ const schema = new mongoose.Schema(
         releaseDate: {type: Date, required: true}
     }
 );
+
+schema.plugin(mongoosePaginate);
 
 export const GameModel = mongoose.model('Game', schema);
 

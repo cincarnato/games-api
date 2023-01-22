@@ -33,3 +33,14 @@ export const findGameById = async (id) => {
 export const fetchGames = async () => {
     return GameModel.find()
 }
+
+
+export const paginateGames = async (page, limit ) => {
+
+    const options = {
+        page: page,
+        limit: limit,
+    };
+
+    return GameModel.paginate({},options)
+}
