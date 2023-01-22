@@ -1,8 +1,10 @@
 import express from 'express'
+import  cors from 'cors'
 import {createGame, updateGame, findGameById, deleteGame, fetchGames} from "./services/GameService.mjs"
 const app = express()
 const port = process.env.PORT ? process.env.PORT : 7500
 app.use(express.json())
+app.use(cors())
 import mongoose from 'mongoose'
 
 
